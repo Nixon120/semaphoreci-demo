@@ -9,7 +9,6 @@ blocks:
     task:
       secrets:
         - name: gcr-secret
-        - name: GCP
       env_vars:
         - name: CLUSTER_NAME
           value: standard-cluster-1
