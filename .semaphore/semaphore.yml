@@ -5,26 +5,9 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: Deployment to gke
+  - name: 'Block #1'
     task:
-      secrets:
-        - name: gcp-key
-      env_vars:
-        - name: CLUSTER_NAME
-          value: standard-cluster-1
-        - name: GCP_PROJECT_ID
-          value: annular-arena-247212
-        - name: GCP_PROJECT_DEFAULT_ZONE
-          value: us-central1-b
-      prologue:
-        commands:
-          - gcloud auth activate-service-account --key-file=.secrets.gcp.json 
-          - gcloud config set project $GCP_PROJECT_ID
-          - gcloud config set compute/zone $GCP_PROJECT_DEFAULT_ZONE
-          - gcloud container clusters get-credentials $CLUSTER_NAME --zone $GCP_PROJECT_DEFAULT_ZONE --project $GCP_PROJECT_ID
-          - checkout
       jobs:
-        - name: Deploy nginx
+        - name: 'Job #1'
           commands:
-            - kubectl get nodes
-            - kubectl create -f nginx-deployment.yaml
+            - checkout
