@@ -8,7 +8,7 @@ blocks:
   - name: Deployment to gke
     task:
       secrets:
-        - name: gcp-key
+        - name: GCP
       env_vars:
         - name: CLUSTER_NAME
           value: standard-cluster-1
