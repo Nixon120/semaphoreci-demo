@@ -1,14 +1,9 @@
-FROM ubuntu:16.04
+FROM nginx
 
-MAINTAINER Nixon Lauture
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
-RUN apt-get update \
-    && apt-get install -y nginx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
+COPY ./backend-not-found.html /var/www/html/backend-not-found.html
 
-ADD default /etc/nginx/sites-available/default
+COPY ./includes/ /etc/nginx/includes/
 
-EXPOSE 80
-CMD ["nginx"]
+COPY ./ssl/ /etc/ssl/certs/nginx/
