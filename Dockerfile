@@ -1,6 +1,14 @@
-# The image to pull the base configuration from
-FROM nginx:mainline-alpine
-# The directory where any additional files will be referenced
-WORKDIR C:\Articles\NGINXPHP
-# Copy the custom default.conf from the WORKDIR (.) and overwrite the existing internal configuration in the NGINX container
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+FROM ubuntu:16.04
+
+MAINTAINER Nixon Lauture
+
+RUN apt-get update \
+    && apt-get install -y nginx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "daemon off;" >> /etc/nginx/nginx.conf
+
+ADD default /etc/nginx/sites-available/default
+
+EXPOSE 80
+CMD ["nginx"]
