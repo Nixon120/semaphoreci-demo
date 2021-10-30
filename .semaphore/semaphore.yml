@@ -27,6 +27,7 @@ blocks:
         - name: Deploy nginx and Push image
           commands:
             - docker pull bitnami/nginx
+            - docker build -t bitnami/nginx
             - docker tag nginx gcr.io/annular-arena-247212/nginx
             #- docker build -t "gcr.io/annular-arena-247212/nginx:${SEMAPHORE_GIT_SHA:0:7}" .
             - docker push "gcr.io/annular-arena-247212/nginx:${SEMAPHORE_GIT_SHA:0:7}"
