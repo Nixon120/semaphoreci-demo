@@ -26,7 +26,7 @@ blocks:
       jobs:
         - name: Deploy nginx and Push image
           commands:
-            #- docker build -t "gcr.io/annular-arena-247212/nginx:${SEMAPHORE_GIT_SHA:0:7}" .
+            - docker build -t "gcr.io/annular-arena-247212/nginx:${SEMAPHORE_GIT_SHA:0:7}" .
             - docker push "gcr.io/annular-arena-247212/nginx:${SEMAPHORE_GIT_SHA:0:7}"
             - kubectl get nodes
             - kubectl create -f nginx-deployment.yaml
